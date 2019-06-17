@@ -30,7 +30,7 @@ export default class StandardNotationDisplay extends React.Component {
         let div = document.getElementById(this.id);
         this.renderer = new Vex.Flow.Renderer(div, Vex.Flow.Renderer.Backends.SVG);
         if (this.props.scale != null) {
-            this.drawStaff(this.props.scale, this.props.startingNote, this.props.useFlats, 50, 20);
+            this.drawStaff(this.props.scale, this.props.startingNote, this.props.useFlats, 50, 15);
         }
     }
 
@@ -38,7 +38,7 @@ export default class StandardNotationDisplay extends React.Component {
         if (this.props.scale != null) {
             if (this.noteRenderingGroup != null)
                 this.renderer.getContext().svg.removeChild(this.noteRenderingGroup);
-            this.drawStaff(this.props.scale, this.props.startingNote, this.props.useFlats, 50, 20);
+            this.drawStaff(this.props.scale, this.props.startingNote, this.props.useFlats, 50, 15);
         }
     }
 
@@ -50,16 +50,18 @@ export default class StandardNotationDisplay extends React.Component {
         let numNotesWithAccidentals = notes.filter(n => 
             n.modifiers.filter(m => 
                 m instanceof Vex.Flow.Accidental).length > 0).length;
+        
+        let renderWidth = renderSize * numNotes + numNotesWithAccidentals * accidentalPadding;
 
         
-        this.renderer.resize((renderSize + 3) * numNotes + numNotesWithAccidentals * accidentalPadding, 120);
+        this.renderer.resize(renderWidth + 16, 120);
 
         let context = this.renderer.getContext();
 
         this.noteRenderingGroup = context.openGroup();
 
         // drawing the stave
-        let stave = new Vex.Flow.Stave(5, 0, renderSize * numNotes + numNotesWithAccidentals * accidentalPadding);
+        let stave = new Vex.Flow.Stave(5, 0, renderWidth + 10);
         stave.addClef("treble");
         stave.setContext(context).draw();
 
@@ -73,7 +75,7 @@ export default class StandardNotationDisplay extends React.Component {
         let voice2 = new Vex.Flow.Voice({num_beats: notes.length, beat_value: 4});
         voice2.addTickables(noteLetters);
 
-        let formatter = new Vex.Flow.Formatter().joinVoices([voice, voice2]).format([voice, voice2], renderSize * notes.length);
+        let formatter = new Vex.Flow.Formatter().joinVoices([voice, voice2]).format([voice, voice2], renderWidth - 10);
         voice.draw(context, stave);
         noteLetters.forEach(letter => letter.setContext(context).draw());
 
