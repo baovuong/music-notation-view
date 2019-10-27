@@ -1,14 +1,6 @@
 import React from 'react';
 import Vex from 'vexflow';
 
-
-let lastId = 0;
-
-function newId(prefix='standardNotationDisplayId') {
-    lastId++;
-    return `${prefix}${lastId}`;
-}
-
 export default class StandardNotationDisplay extends React.Component {
     constructor(props) {
         super(props);
@@ -16,18 +8,18 @@ export default class StandardNotationDisplay extends React.Component {
         this.renderer = null;
         this.stave = null;
         this.noteRenderingGroup = null;
-        this.id = newId();
+        this.ref = React.createRef();
     }
 
     render() {
         return (
-            <div id={this.id}>
+            <div ref={this.ref}>
             </div>
         )
     }
 
     componentDidMount() {
-        let div = document.getElementById(this.id);
+        let div = this.ref.current;
         this.renderer = new Vex.Flow.Renderer(div, Vex.Flow.Renderer.Backends.SVG);
         if (this.props.scale != null) {
             this.drawStaff(this.props.scale, this.props.startingNote, this.props.useFlats, 50, 15);
