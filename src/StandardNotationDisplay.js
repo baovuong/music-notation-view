@@ -19,8 +19,7 @@ export default class StandardNotationDisplay extends React.Component {
     }
 
     componentDidMount() {
-        let div = this.ref.current;
-        this.renderer = new Vex.Flow.Renderer(div, Vex.Flow.Renderer.Backends.SVG);
+        this.renderer = new Vex.Flow.Renderer(this.ref.current, Vex.Flow.Renderer.Backends.SVG);
         if (this.props.scale != null) {
             this.drawStaff(this.props.scale, this.props.startingNote, this.props.useFlats, 50, 15);
         }
