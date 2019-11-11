@@ -1,0 +1,8 @@
+{
+  "short_name": "music-notation-view",
+  "name": "music-notation-view",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
