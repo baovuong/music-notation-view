@@ -1,5 +1,6 @@
 {
   "name": "music-notation-view",
+<<<<<<< HEAD
   "version": "1.0.0",
   "description": "Different ways to view music",
   "author": "baovuong",
@@ -11,6 +12,15 @@
   "engines": {
     "node": ">=8",
     "npm": ">=5"
+=======
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "3.0.1",
+    "vexflow": "^1.2.89"
+>>>>>>> parent of 5b6b888... updated packages
   },
   "scripts": {
     "test": "cross-env CI=1 react-scripts-ts test --env=jsdom",
