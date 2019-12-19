@@ -1,7 +1,5 @@
 {
   "name": "music-notation-view",
-<<<<<<< HEAD
-<<<<<<< HEAD
   "version": "1.0.0",
   "description": "Different ways to view music",
   "author": "baovuong",
@@ -13,8 +11,7 @@
   "engines": {
     "node": ">=8",
     "npm": ">=5"
-=======
-  "version": "0.1.0",
+  },
   "private": true,
   "dependencies": {
     "react": "^16.8.6",
